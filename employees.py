@@ -186,14 +186,14 @@ class PermanentEmployee(Employee):
     """
     A subclass of Employee representing a permanent employee.
     """
-    
+
     def work(self):
         performance_change = random.randrange(-10, 11)
         self.performance += performance_change
         if performance_change >= 0:
             self.happiness += 1
         else:
-            self.happiness -= 1 
+            self.happiness -= 1
         self.performance = max(0, min(self.performance, 100))
 
     def interact(self, other):
@@ -201,13 +201,12 @@ class PermanentEmployee(Employee):
 
         if other is self.manager:
             if other.happiness > HAPPINESS_THRESHOLD and self.performance >= PERM_EMPLOYEE_PERFORMANCE_THRESHOLD:
-                    
                 self.savings += MANAGER_BONUS
             elif other.happiness <= HAPPINESS_THRESHOLD:
-                self.happiness -= 1 
+                self.happiness -= 1
 
         if isinstance(other, Employee):
             if self.performance > 80 and other.performance > 80:
-                self.happiness += 1 
+                self.happiness += 1
             elif self.performance < 50 and other.performance < 50:
-                self.happiness -= 1  
+                self.happiness -= 1
