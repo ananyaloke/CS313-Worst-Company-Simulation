@@ -186,22 +186,22 @@ class PermanentEmployee(Employee):
     """
     A subclass of Employee representing a permanent employee.
     """
+
     def __init__(self, name, manager, salary, savings):
         super().__init__(name, manager, salary, savings)
 
     def work(self):
-        # Allow performance to either increase or decrease
         performance_change = random.randrange(-10, 11)
-        if performance_change >= 0:
-            self.happiness += 1
         self.performance += performance_change
+        
+        if performance_change >= 0:
+            self.happiness += 1  
 
     def interact(self, other):
         super().interact(other)
-        if other is self.manager:
-            if (other.happiness > HAPPINESS_THRESHOLD and
-                self.performance >= PERM_EMPLOYEE_PERFORMANCE_THRESHOLD):
+        
+        if other == self.manager:
+            if other.happiness > HAPPINESS_THRESHOLD and self.performance >= PERM_EMPLOYEE_PERFORMANCE_THRESHOLD:
                 self.savings += MANAGER_BONUS
             elif other.happiness <= HAPPINESS_THRESHOLD:
-                self.happiness -= 1
-
+                self.happiness -= 1 
