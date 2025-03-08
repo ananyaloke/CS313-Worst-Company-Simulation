@@ -1,7 +1,6 @@
 """
 Student information for this assignment:
 
-Replace <FULL NAME> with your name.
 On my/our honor, Ananya Loke and Vijay Avala, this
 programming assignment is my own work and I have not provided this code to
 any other student.
@@ -32,7 +31,7 @@ PERCENTAGE_MIN = 0
 SALARY_ERROR_MESSAGE = "Salary must be non-negative."
 
 
-class Employee(ABC):
+class Employee(ABC): # pylint: disable=too-many-instance-attributes
     """
     Abstract base class representing a generic employee in the system.
     """
@@ -122,7 +121,6 @@ class Employee(ABC):
             self._salary = salary  # Use _salary instead
         else:
             raise ValueError(SALARY_ERROR_MESSAGE)
-    
 
     def daily_expense(self):
         """Simulates the employee's daily expenses"""
@@ -139,8 +137,6 @@ class Manager(Employee):
     """
     A subclass of Employee representing a manager.
     """
-    def __init__(self, name, manager, salary, savings):
-        super().__init__(name, manager, salary, savings)
 
     def work(self):
         performance_change = random.randrange(-5, 6)
@@ -159,12 +155,11 @@ class Manager(Employee):
         return self._name
 
 
+
 class TemporaryEmployee(Employee):
     """
     A subclass of Employee representing a temporary employee.
     """
-    def __init__(self, name, manager, salary, savings):
-        super().__init__(name, manager, salary, savings)
 
     def work(self):
         performance_change = random.randrange(-15, 16)
@@ -191,8 +186,6 @@ class PermanentEmployee(Employee):
     """
     A subclass of Employee representing a permanent employee.
     """
-    def __init__(self, name, manager, salary, savings):
-        super().__init__(name, manager, salary, savings)
 
     def work(self):
         performance_change = random.randrange(-10, 11)
