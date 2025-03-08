@@ -69,18 +69,18 @@ class Employee(ABC): # pylint: disable=too-many-instance-attributes
         """returns name of the employee"""
         return self._name
 
-    @name.setter
-    def name(self, name):
-        self._name = name
+    #@name.setter
+    #def name(self, name):
+    #    self._name = name
 
     @property
     def manager(self):
         """returns manager of the employee"""
         return self._manager
 
-    @manager.setter
-    def manager(self, manager):
-        self._manager = manager
+    #@manager.setter
+    #def manager(self, manager):
+    #    self._manager = manager
 
     @property
     def performance(self):
@@ -186,8 +186,11 @@ class PermanentEmployee(Employee):
     """
     A subclass of Employee representing a permanent employee.
     """
+    def __init__(self, name, manager, salary, savings):
+        super().__init__(name, manager, salary, savings)
 
     def work(self):
+        # Allow performance to either increase or decrease
         performance_change = random.randrange(-10, 11)
         if performance_change >= 0:
             self.happiness += 1
@@ -197,7 +200,8 @@ class PermanentEmployee(Employee):
         super().interact(other)
         if other is self.manager:
             if (other.happiness > HAPPINESS_THRESHOLD and
-            self.performance >= PERM_EMPLOYEE_PERFORMANCE_THRESHOLD):
+                self.performance >= PERM_EMPLOYEE_PERFORMANCE_THRESHOLD):
                 self.savings += MANAGER_BONUS
             elif other.happiness <= HAPPINESS_THRESHOLD:
                 self.happiness -= 1
+
